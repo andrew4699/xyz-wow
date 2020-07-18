@@ -1,0 +1,7 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/xyz-wow:$BRANCH_NAME', '-f', 'Dockerfile.build', '.']
+images:
+  - 'gcr.io/$PROJECT_ID/xyz-wow:$BRANCH_NAME'
+options:
+  machineType: 'N1_HIGHCPU_32'

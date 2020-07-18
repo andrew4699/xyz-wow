@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+  bnetserver:
+    image: xyz/bnetserver
+    container_name: xyz-bnetserver
+    depends_on:
+      - db
+    network_mode: "host"
+    ports:
+      - "1119:1119"
+      - "8081:8081"
+      - "8085:8085"
+      - "8086:8086"
+    command: ["bnetserver"]
+
+  worldserver:
+    image: xyz/worldserver
+    container_name: xyz-worldserver
+    depends_on:
+      - db
+      - bnetserver
+    network_mode: "host"
+    ports:
+      - "1119:1119"
+      - "8081:8081"
+      - "8085:8085"
+      - "8086:8086"
+    command: ["bnetserver"]
+
+  db:
+    image: mysql:5.5
+    container_name: xyz-db
+    restart: always
+    environment:
+      MYSQL_USER: "rootuser2"
+      MYSQL_PASSWORD: "ascent"
+      MYSQL_ROOT_PASSWORD: "ascent"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    network_mode: "host"
+    ports:
+      - "3306:3306"
