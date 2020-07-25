@@ -10,6 +10,6 @@ RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang 100
 WORKDIR /xyz-build
 WORKDIR /xyz/build
 COPY . /xyz/
-RUN cmake ../ -DCMAKE_INSTALL_PREFIX=/xyz-build/ -DTOOLS=0
+RUN cmake ../ -DCMAKE_INSTALL_PREFIX=/xyz-build/ -DTOOLS=0 -DSCRIPTS_CUSTOM=dynamic
 RUN make -j 32
 RUN make install
