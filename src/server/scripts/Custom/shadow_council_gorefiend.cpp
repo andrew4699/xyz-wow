@@ -26,12 +26,16 @@ EndScriptData */
 /* ContentData
 EndContentData */
 
+#include "AreaTrigger.h"
+#include "AreaTriggerAI.h"
 #include "ScriptMgr.h"
-#include "InstanceScript.h"
-#include "MotionMaster.h"
-#include "ObjectAccessor.h"
-#include "Player.h"
-#include "ScriptedGossip.h"
+#include "ScriptedCreature.h"
+#include "CellImpl.h"
+#include "GridNotifiersImpl.h"
+#include "MoveSplineInit.h"
+#include "SpellAuraEffects.h"
+#include "G3D/Vector3.h"
+#include "CreatureTextMgr.h"
 
 /*######
 ## npc_gorefiend
@@ -44,7 +48,7 @@ class shadow_council_gorefiend : public CreatureScript
     public:
         shadow_council_gorefiend() : CreatureScript("shadow_council_gorefiend") { }
 
-        struct gorefiendAI : public BossAI
+        struct shadow_council_gorefiendAI : public BossAI
         {
             shadow_council_gorefiendAI(Creature* creature) : BossAI(creature, GOREFIEND_BOSS_ID), m_Vehicle(creature->GetVehicleKit())
             {
