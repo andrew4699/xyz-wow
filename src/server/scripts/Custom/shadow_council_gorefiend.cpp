@@ -50,7 +50,7 @@ class shadow_council_gorefiend : public CreatureScript
 
         struct shadow_council_gorefiendAI : public BossAI
         {
-            shadow_council_gorefiendAI(Creature* creature) : BossAI(creature, GOREFIEND_BOSS_ID), m_Vehicle(creature->GetVehicleKit())
+            shadow_council_gorefiendAI(Creature* creature) : BossAI(creature, GOREFIEND_BOSS_ID))
             {
                 m_Instance = creature->GetInstanceScript();
             }
