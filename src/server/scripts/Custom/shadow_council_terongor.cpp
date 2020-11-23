@@ -10,13 +10,13 @@
 #include "CreatureTextMgr.h"
 #include "shadow_council.h"
 
-#define GOREFIEND_BOSS_ID 2
+#define TERONGOR_BOSS_ID 0
 
-Position const guldanPos = { 3916.424f, 8591.441f, 565.411f, 6.188f };
+Position const gorefiendPos = { 4186.226f, 8574.394f, 572.572f, 6.251f };
 
 enum eSpells
 {
-
+  VenomshadeCopyDmgAura   = 154349,
 };
 
 enum eTalks
@@ -24,14 +24,14 @@ enum eTalks
 
 };
 
-class shadow_council_gorefiend : public CreatureScript
+class shadow_council_terongor : public CreatureScript
 {
     public:
-        shadow_council_gorefiend() : CreatureScript("shadow_council_gorefiend") { }
+        shadow_council_terongor() : CreatureScript("shadow_council_terongor") { }
 
-        struct shadow_council_gorefiendAI : public BossAI
+        struct shadow_council_terongorAI : public BossAI
         {
-            shadow_council_gorefiendAI(Creature* creature) : BossAI(creature, GOREFIEND_BOSS_ID)
+            shadow_council_terongorAI(Creature* creature) : BossAI(creature, TERONGOR_BOSS_ID)
             {
                 m_Instance = creature->GetInstanceScript();
             }
@@ -59,6 +59,9 @@ class shadow_council_gorefiend : public CreatureScript
                 me->setActive(true);
 
                 Talk(0);
+
+                if (Creature* l_Other = me->FindNearestCreature(eShadowCouncil::ChoGall, 150.0f))
+                    me->AddAura(eSpells::VenomshadeCopyDmgAura, l_Other);
             }
 
             void DamageDealt(Unit* p_Victim, uint32& /*damage*/, DamageEffectType damageType) override
@@ -81,8 +84,10 @@ class shadow_council_gorefiend : public CreatureScript
 
             void JustDied(Unit* /*killer*/) override
             {
-                _JustDied();
-                me->SummonCreature(eShadowCouncil::Guldan, guldanPos);
+                // _JustDied();
+                Talk(0);
+
+                me->SummonCreature(eShadowCouncil::Gorefiend, gorefiendPos);
             }
 
             // void UpdateAI(uint32 const diff) override
@@ -108,11 +113,11 @@ class shadow_council_gorefiend : public CreatureScript
 
         CreatureAI* GetAI(Creature* creature) const override
         {
-            return new shadow_council_gorefiendAI(creature);
+            return new shadow_council_terongorAI(creature);
         }
 };
 
-void AddSC_shadow_council_gorefiend()
+void AddSC_shadow_council_terongor()
 {
-    new shadow_council_gorefiend();
+    new shadow_council_terongor();
 }

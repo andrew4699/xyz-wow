@@ -10,9 +10,7 @@
 #include "CreatureTextMgr.h"
 #include "shadow_council.h"
 
-#define GOREFIEND_BOSS_ID 2
-
-Position const guldanPos = { 3916.424f, 8591.441f, 565.411f, 6.188f };
+#define GULDAN_BOSS_ID 3
 
 enum eSpells
 {
@@ -24,14 +22,14 @@ enum eTalks
 
 };
 
-class shadow_council_gorefiend : public CreatureScript
+class shadow_council_guldan : public CreatureScript
 {
     public:
-        shadow_council_gorefiend() : CreatureScript("shadow_council_gorefiend") { }
+        shadow_council_guldan() : CreatureScript("shadow_council_guldan") { }
 
-        struct shadow_council_gorefiendAI : public BossAI
+        struct shadow_council_guldanAI : public BossAI
         {
-            shadow_council_gorefiendAI(Creature* creature) : BossAI(creature, GOREFIEND_BOSS_ID)
+            shadow_council_guldanAI(Creature* creature) : BossAI(creature, GULDAN_BOSS_ID)
             {
                 m_Instance = creature->GetInstanceScript();
             }
@@ -79,11 +77,10 @@ class shadow_council_gorefiend : public CreatureScript
             //     }
             // }
 
-            void JustDied(Unit* /*killer*/) override
-            {
-                _JustDied();
-                me->SummonCreature(eShadowCouncil::Guldan, guldanPos);
-            }
+            // void JustDied(Unit* /*killer*/) override
+            // {
+            //     _JustDied();
+            // }
 
             // void UpdateAI(uint32 const diff) override
             // {
@@ -108,11 +105,11 @@ class shadow_council_gorefiend : public CreatureScript
 
         CreatureAI* GetAI(Creature* creature) const override
         {
-            return new shadow_council_gorefiendAI(creature);
+            return new shadow_council_guldanAI(creature);
         }
 };
 
-void AddSC_shadow_council_gorefiend()
+void AddSC_shadow_council_guldan()
 {
-    new shadow_council_gorefiend();
+    new shadow_council_guldan();
 }

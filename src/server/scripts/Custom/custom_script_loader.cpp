@@ -17,7 +17,10 @@
 
 // This is where scripts' loading functions should be declared:
 void AddSC_custom_npcs();
+void AddSC_shadow_council_chogall();
+void AddSC_shadow_council_terongor();
 void AddSC_shadow_council_gorefiend();
+void AddSC_shadow_council_guldan();
 
 // ADM declaration begin
 // ADM declaration end
@@ -27,7 +30,11 @@ void AddSC_shadow_council_gorefiend();
 void AddCustomScripts()
 {
     AddSC_custom_npcs();
+
+    AddSC_shadow_council_chogall();
+    AddSC_shadow_council_terongor();
     AddSC_shadow_council_gorefiend();
+    AddSC_shadow_council_guldan();
 
     // ADM call begin
     // ADM call end
